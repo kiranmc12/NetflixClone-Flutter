@@ -1,13 +1,12 @@
+
 import 'package:flutter/material.dart';
 import 'package:netflixclone/core/colors/constants.dart';
-import 'package:netflixclone/presentation/widgets/main_card.dart';
-import 'main_title.dart';
+import 'package:netflixclone/presentation/home/widgets/number_card.dart';
+import 'package:netflixclone/presentation/widgets/main_title.dart';
 
-class MainTitleCard extends StatelessWidget {
-  final String title;
-  const MainTitleCard({
-    super.key, 
-    required this.title,
+class NumberTitleCard extends StatelessWidget {
+  const NumberTitleCard({
+    super.key,
   });
 
   @override
@@ -15,18 +14,16 @@ class MainTitleCard extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        MainTitle(title: title),
+        const MainTitle(title: "Top 10 Tv shows in India Today"),
         kHeight,
         LimitedBox(
           maxHeight: 200,
           child: ListView(
             scrollDirection: Axis.horizontal,
-            children: List.generate(10, (index) =>  MainCard()),
+            children: List.generate(10, (index) => NumberCard(index: index,)),
           ),
         )
-     
       ],
     );
   }
 }
-
