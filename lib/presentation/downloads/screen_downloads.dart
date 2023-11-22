@@ -11,7 +11,7 @@ class ScreenDownloads extends StatelessWidget {
   final _widgetList= [
           const _SmartDownloads(),
           Section2(),
-          Section3()
+          const Section3()
          
         
         ];
@@ -32,9 +32,9 @@ class ScreenDownloads extends StatelessWidget {
             ),
           )),
       body:ListView.separated(
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         itemBuilder:(context, index)=>_widgetList[index], 
-        separatorBuilder:(context, index) =>SizedBox(height: 30,),
+        separatorBuilder:(context, index) =>const SizedBox(height: 30,),
        itemCount: _widgetList.length
        )
     );
@@ -170,9 +170,9 @@ class _SmartDownloads extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 7),
-      child: const Row(
+    return const Padding(
+      padding: EdgeInsets.symmetric(vertical: 8,horizontal: 7),
+      child: Row(
         children: [
           Icon(
             

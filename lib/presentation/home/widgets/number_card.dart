@@ -12,7 +12,7 @@ class NumberCard extends StatelessWidget {
       children: [
         Row(
           children: [
-            SizedBox(
+            const SizedBox(
               width: 40,
               height: 200,
             ),
@@ -33,7 +33,7 @@ class NumberCard extends StatelessWidget {
           bottom: -22,
           child: StrokeText(
             text: "${index+1}",
-            textStyle: TextStyle(
+            textStyle: const TextStyle(
               decoration: TextDecoration.none,
               fontWeight: FontWeight.bold,
               fontSize: 125,

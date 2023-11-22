@@ -22,7 +22,6 @@ class ScreenHome extends StatelessWidget {
               child: NotificationListener<UserScrollNotification>(
                 onNotification: (notification) {
                   final ScrollDirection direction = notification.direction;
-                  print(direction);
         
                   if (direction == ScrollDirection.reverse) {
                     scrollNotifier.value = false;
@@ -49,7 +48,7 @@ class ScreenHome extends StatelessWidget {
                     ),
                     scrollNotifier.value == true
                         ? AnimatedContainer(
-                          duration: Duration(milliseconds: 1000),
+                          duration: const Duration(milliseconds: 1000),
                             width: double.infinity,
                             height: 80,
                             color: Colors.black.withOpacity(0.1),
@@ -57,7 +56,7 @@ class ScreenHome extends StatelessWidget {
                               children: [
                                 Row(
                                   children: [
-                                    CircleAvatar(
+                                    const CircleAvatar(
                                       radius: 25,
                                       backgroundImage: NetworkImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJEqgLFHEKS88Zp7YCu8EzyD65Rw2huxmWrw&usqp=CAU",
                                       ),

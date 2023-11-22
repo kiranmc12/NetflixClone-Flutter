@@ -15,7 +15,7 @@ class SearchIdleWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-         SearchTextTitle(title: 'Top Searches'),
+         const SearchTextTitle(title: 'Top Searches'),
         kHeight,
         Expanded(
           child: ListView.separated(
