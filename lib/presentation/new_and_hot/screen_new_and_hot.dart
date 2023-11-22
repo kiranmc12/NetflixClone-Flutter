@@ -3,6 +3,8 @@ import 'package:netflixclone/core/colors/colors.dart';
 import 'package:netflixclone/core/colors/constants.dart';
 import 'package:netflixclone/presentation/home/widgets/custom_button_widget.dart';
 import 'package:netflixclone/presentation/new_and_hot/widgets/coming_soon_widget.dart';
+import 'package:netflixclone/presentation/new_and_hot/widgets/everyones_watching_widget.dart';
+import 'package:netflixclone/presentation/widgets/video_widget.dart';
 
 class ScreenNewAndHot extends StatelessWidget {
   const ScreenNewAndHot({super.key});
@@ -69,6 +71,8 @@ class ScreenNewAndHot extends StatelessWidget {
   }
 
   Widget _buildEveryonesWatching() {
-    return const SizedBox();
+    return ListView.builder(
+      itemCount: 10,
+      itemBuilder:(context, index) => EveryonesWatchingWidget(),);
   }
 }

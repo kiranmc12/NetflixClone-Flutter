@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:netflixclone/core/colors/colors.dart';
 import 'package:netflixclone/core/colors/constants.dart';
 import 'package:netflixclone/presentation/home/widgets/custom_button_widget.dart';
+import 'package:netflixclone/presentation/widgets/video_widget.dart';
 
 class CommingSoonWidget extends StatelessWidget {
   const CommingSoonWidget({
@@ -40,37 +41,11 @@ class CommingSoonWidget extends StatelessWidget {
         SizedBox(
           width: size.width - 50,
           height: 450,
-          child: Column(
+          child:  const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Stack(
-                children: [
-                  SizedBox(
-                    width: double.infinity,
-                    height: 200,
-                    child: Image.network(
-                      "https://www.themoviedb.org/t/p/w250_and_h141_face/mDfJG3LC3Dqb67AZ52x3Z0jU0uB.jpg",
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 10,
-                    right: 10,
-                    child: CircleAvatar(
-                      backgroundColor: Colors.black.withOpacity(0.5),
-                      radius: 22,
-                      child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.volume_off,
-                            color: kWhite,
-                            size: 20,
-                          )),
-                    ),
-                  ),
-                ],
-              ),
-              const Row(
+              VideoWidget(),
+              Row(
                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
@@ -103,9 +78,9 @@ class CommingSoonWidget extends StatelessWidget {
                 ],
               ),
               kHeight,
-              const Text("Coming on Friday"),
+              Text("Coming on Friday"),
               kHeight,
-              const Text(
+              Text(
                 "Tall Girl 2",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
@@ -121,3 +96,5 @@ class CommingSoonWidget extends StatelessWidget {
     );
   }
 }
+
+
