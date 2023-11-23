@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:netflixclone/api/apiconstants.dart';
 import 'package:netflixclone/core/colors/colors.dart';
+import 'package:netflixclone/models/movies.dart';
 
 class VideoListItem extends StatelessWidget {
   final int index;
-  const VideoListItem({super.key, required this.index});
+  final Movies Movie;
+  VideoListItem({super.key, required this.index, required this.Movie});
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Container(
-          color: Colors.accents[index % Colors.accents.length],
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image:
+                      NetworkImage(ApiConstants.imagePath + Movie.posterPath))),
         ),
         Align(
           alignment: Alignment.bottomCenter,
@@ -26,22 +33,23 @@ class VideoListItem extends StatelessWidget {
                   radius: 30,
                   child: IconButton(
                       onPressed: () {},
-                       icon: const Icon(
+                      icon: const Icon(
                         Icons.volume_off,
                         color: kWhite,
-                        size: 30, 
-                        )),
+                        size: 30,
+                      )),
                 ),
                 //right side
 
-                const Column(
+                Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 10),
                       child: CircleAvatar(
                         radius: 30,
-                        backgroundImage: NetworkImage('https://www.themoviedb.org/t/p/w600_and_h900_bestv2/hXXhXaYBs1d6TcoUv78Wyuepu79.jpg'),
+                        backgroundImage: NetworkImage(
+                            ApiConstants.imagePath + Movie.posterPath),
                       ),
                     ),
                     VideoActionsWidget(
@@ -69,17 +77,18 @@ class VideoActionsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       child: Column(
         children: [
-          Icon(icon,
-          color: kWhite,
-          size: 30,),
-          Text(title,
-          style: const TextStyle(
+          Icon(
+            icon,
             color: kWhite,
-            fontSize:16 
-            ),)
+            size: 30,
+          ),
+          Text(
+            title,
+            style: const TextStyle(color: kWhite, fontSize: 16),
+          )
         ],
       ),
     );

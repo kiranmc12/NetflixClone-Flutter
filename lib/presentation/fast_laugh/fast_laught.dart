@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflixclone/presentation/fast_laugh/widgets/video_list_item.dart';
+import 'package:netflixclone/presentation/home/screen_home.dart';
 
 class ScreenFastLaugh extends StatelessWidget {
   const ScreenFastLaugh({super.key});
@@ -8,12 +9,18 @@ class ScreenFastLaugh extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
-            child: PageView(
-                scrollDirection: Axis.vertical,
-                children: List.generate(10, (index) {
-                  return VideoListItem(
-                    index: index,
-                  );
-                }))));
+            child: ValueListenableBuilder(
+      valueListenable: trendingNow,
+      builder: (context, value, child) {
+        return PageView(
+            scrollDirection: Axis.vertical,
+            children: List.generate(value.length, (index) {
+              return VideoListItem(
+                Movie: value[index],
+                index: index,
+              );
+            }));
+      },
+    )));
   }
 }

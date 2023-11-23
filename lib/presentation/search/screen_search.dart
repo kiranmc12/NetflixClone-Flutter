@@ -3,9 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:netflixclone/core/colors/constants.dart';
 import 'package:netflixclone/presentation/search/widgets/search_result.dart';
 
-class ScreenSearch extends StatelessWidget {
+class ScreenSearch extends StatefulWidget {
   const ScreenSearch({super.key});
 
+  @override
+  State<ScreenSearch> createState() => _ScreenSearchState();
+}
+
+class _ScreenSearchState extends State<ScreenSearch> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

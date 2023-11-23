@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:netflixclone/api/apiconstants.dart';
 
 class DownloadsImageWidget extends StatelessWidget {
   const DownloadsImageWidget({
@@ -31,7 +32,8 @@ class DownloadsImageWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(radius),
             color: Colors.red,
             image: DecorationImage(
-                image: NetworkImage(imageList), fit: BoxFit.cover),
+                image: NetworkImage(ApiConstants.imagePath + imageList),
+                fit: BoxFit.cover),
           ),
         ),
       ),

@@ -46,6 +46,18 @@ class Api {
       throw Exception("Error has occured");
     }
   }
+
+
+
+  Future<List<String>> getDownlaodImages() async{
+    final response=await http.get(Uri.parse(_top10TvShows));
+    if(response.statusCode==200){
+      final decodeData=json.decode(response.body)['results'] as List;
+      return decodeData.map((movie) => Movies.fromJson(movie).posterPath).toList();
+    }else{
+      throw Exception("An error has occured while getting the download images");
+    }
+  }
 }
 
 
