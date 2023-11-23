@@ -1,12 +1,14 @@
-
 import 'package:flutter/material.dart';
 import 'package:netflixclone/core/colors/constants.dart';
+import 'package:netflixclone/models/movies.dart';
 import 'package:netflixclone/presentation/home/widgets/custom_button_widget.dart';
 import 'package:netflixclone/presentation/widgets/video_widget.dart';
 
 class CommingSoonWidget extends StatelessWidget {
+  final Movies movie;
   const CommingSoonWidget({
     super.key,
+    required this.movie,
   });
 
   @override
@@ -17,7 +19,7 @@ class CommingSoonWidget extends StatelessWidget {
       children: [
         const SizedBox(
           width: 50,
-          height: 450,
+          height: 500,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
@@ -39,20 +41,27 @@ class CommingSoonWidget extends StatelessWidget {
         ),
         SizedBox(
           width: size.width - 50,
-          height: 450,
-          child:  const Column(
+          height: 500,
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              VideoWidget(),
+              VideoWidget(
+                image: movie.backDropPath,
+              ),
+              kHeight,
               Row(
                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "TALL GIRL 2",
-                    style: TextStyle(
-                        letterSpacing: -5,
-                        fontSize: 35,
-                        fontWeight: FontWeight.bold),
+                  SizedBox(
+                    width: 200,
+                    child: Text(
+                      movie.title,
+                      style: TextStyle(
+                          overflow: TextOverflow.ellipsis,
+                          letterSpacing: -3,
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
                   Spacer(),
                   Row(
@@ -71,7 +80,7 @@ class CommingSoonWidget extends StatelessWidget {
                         iconSize: 20,
                         textSize: 12,
                       ),
-                      kWidth,
+                      kWidth20
                     ],
                   )
                 ],
@@ -80,13 +89,16 @@ class CommingSoonWidget extends StatelessWidget {
               Text("Coming on Friday"),
               kHeight,
               Text(
-                "Tall Girl 2",
+                movie.title,
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               kHeight,
-              Text(
-                "Landing the lead in the school musical is a dream come true for Jodi,until the pressure sends her confidence--and her relationship--into a tailspin.",
-                style: TextStyle(color: Colors.grey),
+              SizedBox(
+                height: 150,
+                child: Text(
+                  movie.overView,
+                  style: TextStyle(color: Colors.grey, fontSize: 13),
+                ),
               )
             ],
           ),
@@ -95,5 +107,3 @@ class CommingSoonWidget extends StatelessWidget {
     );
   }
 }
-
-

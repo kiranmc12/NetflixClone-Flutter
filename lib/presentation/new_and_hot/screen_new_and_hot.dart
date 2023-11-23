@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:netflixclone/core/colors/colors.dart';
 import 'package:netflixclone/core/colors/constants.dart';
+import 'package:netflixclone/presentation/home/screen_home.dart';
 import 'package:netflixclone/presentation/new_and_hot/widgets/coming_soon_widget.dart';
 import 'package:netflixclone/presentation/new_and_hot/widgets/everyones_watching_widget.dart';
 
@@ -62,15 +63,26 @@ class ScreenNewAndHot extends StatelessWidget {
   }
 
   Widget _buildComminSoon() {
-    return ListView.builder(
-      itemCount: 10,
-      itemBuilder: (context, index) => const CommingSoonWidget(),
+    return ValueListenableBuilder(
+      valueListenable: top10TvShows,
+      builder: (context, value, child) {
+        return ListView.builder(
+          itemCount: value.length,
+          itemBuilder: (context, index) =>  CommingSoonWidget(movie:value[index] ),
+        );
+      },
     );
   }
 
   Widget _buildEveryonesWatching() {
-    return ListView.builder(
-      itemCount: 10,
-      itemBuilder:(context, index) => const EveryonesWatchingWidget(),);
+    return ValueListenableBuilder(
+      valueListenable: trendingNow,
+      builder: (context, value, child) {
+        return ListView.builder(
+          itemCount: value.length,
+          itemBuilder: (context, index) =>  EveryonesWatchingWidget(movie: value[index]),
+        );
+      },
+    );
   }
 }

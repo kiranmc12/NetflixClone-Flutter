@@ -10,7 +10,7 @@ class ScreenMainPage extends StatelessWidget {
   ScreenMainPage({super.key});
 
   final _pages = [
-    const ScreenHome(),
+     ScreenHome(),
     const ScreenNewAndHot(),
     const ScreenFastLaugh(),
      const ScreenSearch(),

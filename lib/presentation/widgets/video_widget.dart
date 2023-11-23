@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:netflixclone/api/apiconstants.dart';
 import 'package:netflixclone/core/colors/colors.dart';
 import 'package:netflixclone/core/colors/constants.dart';
 
 class VideoWidget extends StatelessWidget {
-  const VideoWidget({
-    super.key,
+  final String image;
+   VideoWidget({
+    super.key, required this.image,
   });
+ 
   
 
   @override
@@ -16,7 +19,7 @@ class VideoWidget extends StatelessWidget {
           width: double.infinity,
           height: 200,
           child: Image.network(
-            kNewAandHotImage2,
+            ApiConstants.imagePath+image,
             fit: BoxFit.cover,
           ),
         ),
@@ -27,7 +30,8 @@ class VideoWidget extends StatelessWidget {
             backgroundColor: Colors.black.withOpacity(0.5),
             radius: 22,
             child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                },
                 icon: const Icon(
                   Icons.volume_off,
                   color: kWhite,

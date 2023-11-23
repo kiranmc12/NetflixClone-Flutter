@@ -1,17 +1,40 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:netflixclone/api/api.dart';
 import 'package:netflixclone/core/colors/constants.dart';
+import 'package:netflixclone/models/movies.dart';
 import 'package:netflixclone/presentation/home/widgets/background_card.dart';
 import 'package:netflixclone/presentation/home/widgets/number_title_card.dart';
 import 'package:netflixclone/presentation/widgets/main_title_card.dart';
 
 ValueNotifier<bool> scrollNotifier = ValueNotifier(true);
+  ValueNotifier <List<Movies>> trendingNow=ValueNotifier([]);
+  ValueNotifier <List<Movies>>  topRated=ValueNotifier([]);
+  ValueNotifier <List<Movies>>  top10TvShows=ValueNotifier([]);
+int randomIndex=0;
 
 class ScreenHome extends StatelessWidget {
-  const ScreenHome({super.key});
+   ScreenHome({super.key});
+
+
+
+
+
+   fetchDatas() async {
+    trendingNow.value = await Api().getTrendingMovies();
+    topRated.value=await Api().getTopRatedMovies();
+    top10TvShows.value=await Api().getTop10TvShows();
+
+  
+    final random = Random();
+    randomIndex = random.nextInt(10);
+  }
 
   @override
   Widget build(BuildContext context) {
+    fetchDatas();
     return Scaffold(
         body: ValueListenableBuilder(
       valueListenable: scrollNotifier,
@@ -33,16 +56,18 @@ class ScreenHome extends StatelessWidget {
                 child: Stack(
                   children: [
                     ListView(
-                      children: const [
+                      children:  [
                         BackgroundCard(),
-                        MainTitleCard(title: "Released in the past year"),
+                        MainTitleCard(title: "Top Rated",
+                        listNotifier: topRated),
                         kHeight,
-                        MainTitleCard(title: "Trending Now"),
+                        MainTitleCard(title: "Trending Now",
+                        listNotifier: trendingNow),
                         kHeight,
-                        NumberTitleCard(),
-                        MainTitleCard(title: "Tense Dramas"),
+                        NumberTitleCard(listNotifier: top10TvShows,),
+                        MainTitleCard(title: "Tense Dramas",listNotifier: topRated),
                         kHeight,
-                        MainTitleCard(title: " South Indian Cinema"),
+                        MainTitleCard(title: " South Indian Cinema",listNotifier: trendingNow),
                         kHeight
                       ],
                     ),

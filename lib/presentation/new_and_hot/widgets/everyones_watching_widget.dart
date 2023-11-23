@@ -1,17 +1,20 @@
 
 import 'package:flutter/material.dart';
 import 'package:netflixclone/core/colors/constants.dart';
+import 'package:netflixclone/models/movies.dart';
 import 'package:netflixclone/presentation/home/widgets/custom_button_widget.dart';
 import 'package:netflixclone/presentation/widgets/video_widget.dart';
 
 class EveryonesWatchingWidget extends StatelessWidget {
-  const EveryonesWatchingWidget({
+  final Movies movie;
+   EveryonesWatchingWidget({
     super.key,
+     required this.movie,
   });
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return  Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         kHeight,
@@ -25,7 +28,7 @@ class EveryonesWatchingWidget extends StatelessWidget {
           style: TextStyle(color: Colors.grey),
         ),
         kHeight50,
-        VideoWidget(),
+         VideoWidget(image: movie.backDropPath),
         kHeight,
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
