@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:netflixclone/api/apiconstants.dart';
 import 'package:netflixclone/core/colors/constants.dart';
-import 'package:netflixclone/presentation/search/widgets/search_idle.dart';
+import 'package:netflixclone/presentation/home/screen_home.dart';
 import 'package:netflixclone/presentation/search/widgets/title.dart';
 
 class SearchResultWidget extends StatelessWidget {
@@ -14,30 +15,39 @@ class SearchResultWidget extends StatelessWidget {
         const SearchTextTitle(title: 'Movies & TV'),
         kHeight,
         Expanded(
-          child: GridView.count(
-            shrinkWrap: true,
-            crossAxisCount: 3,
-            crossAxisSpacing: 8,
-            mainAxisSpacing: 8,
-            childAspectRatio: 1/1.4,
-            children: List.generate(20, (index) {
-              return const MainCard();
-            }),
+          child: ValueListenableBuilder(
+            valueListenable: topRated,
+            builder:(context, value, child) {
+                    return GridView.count(
+              shrinkWrap: true,
+              crossAxisCount: 3,
+              crossAxisSpacing: 8,
+              mainAxisSpacing: 8,
+              childAspectRatio: 1/1.4,
+              children: List.generate(value.length, (index) {
+                return  MainCard(imageUrl: value[index].posterPath,);
+              }),
+              
+              );
+              
+            },
             
-            ))
+      
+          ))
       ],
     );
   }
 }
 class MainCard extends StatelessWidget {
-  const MainCard({super.key});
+  const MainCard({super.key, required this.imageUrl});
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        image: const DecorationImage(
-          image: NetworkImage(imageUrl),
+        image:  DecorationImage(
+          image: NetworkImage(ApiConstants.imagePath+imageUrl),
           fit: BoxFit.cover),
           borderRadius: BorderRadius.circular(5)
       ),
