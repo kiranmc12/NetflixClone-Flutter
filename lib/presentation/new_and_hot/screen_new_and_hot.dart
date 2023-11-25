@@ -31,7 +31,12 @@ class ScreenNewAndHot extends StatelessWidget {
                 Container(
                   width: 30,
                   height: 20,
-                  color: Colors.blue,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(
+                        kAvatarIcon
+                      ))
+                  ),
                 ),
                 kWidth
               ],

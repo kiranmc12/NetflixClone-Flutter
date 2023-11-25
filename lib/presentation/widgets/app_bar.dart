@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:netflixclone/core/colors/constants.dart';
 
 class AppBarWidget extends StatelessWidget {
-  const AppBarWidget({super.key,required this.title});
+  const AppBarWidget({super.key, required this.title});
   final String title;
 
   @override
@@ -11,11 +11,10 @@ class AppBarWidget extends StatelessWidget {
       children: [
         kWidth,
         kWidth,
-         Text(title,
-        style: const TextStyle(
-          fontSize: 25,
-          fontWeight:FontWeight.bold
-           ),),
+        Text(
+          title,
+          style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+        ),
         const Spacer(),
         const Icon(
           Icons.cast,
@@ -27,7 +26,13 @@ class AppBarWidget extends StatelessWidget {
         Container(
           width: 30,
           height: 30,
-          color: Colors.blue,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+                image: NetworkImage(
+                  "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png",
+                ),
+                fit: BoxFit.cover),
+          ),
         ),
         kWidth
       ],

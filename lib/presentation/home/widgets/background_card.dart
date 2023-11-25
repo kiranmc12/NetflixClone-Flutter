@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:netflixclone/api/apiconstants.dart';
 import 'package:netflixclone/core/colors/colors.dart';
 import 'package:netflixclone/core/colors/constants.dart';
 import 'package:netflixclone/presentation/home/widgets/custom_button_widget.dart';
 
 class BackgroundCard extends StatelessWidget {
-  const BackgroundCard({super.key});
+   BackgroundCard({super.key,
+    required this.imageUrl});
+   final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
     return  Stack(
                   children: [
                     Container(
-                      decoration: const BoxDecoration(
+                      decoration:  BoxDecoration(
                           image:
-                              DecorationImage(image: NetworkImage(kMainImage))),
+                              DecorationImage(image: NetworkImage(ApiConstants.imagePath+imageUrl))),
                       width: double.infinity,
                       height: 600,
                     ),

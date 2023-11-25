@@ -31,7 +31,6 @@ class MainTitleCard extends StatelessWidget {
                 itemBuilder: (context, index) {
                   var data = value[index];
                   return MainCard(image: data.posterPath);
-                
                 },
               );
             },

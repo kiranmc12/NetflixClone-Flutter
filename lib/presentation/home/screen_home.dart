@@ -10,24 +10,18 @@ import 'package:netflixclone/presentation/home/widgets/number_title_card.dart';
 import 'package:netflixclone/presentation/widgets/main_title_card.dart';
 
 ValueNotifier<bool> scrollNotifier = ValueNotifier(true);
-  ValueNotifier <List<Movies>> trendingNow=ValueNotifier([]);
-  ValueNotifier <List<Movies>>  topRated=ValueNotifier([]);
-  ValueNotifier <List<Movies>>  top10TvShows=ValueNotifier([]);
-int randomIndex=0;
+ValueNotifier<List<Movies>> trendingNow = ValueNotifier([]);
+ValueNotifier<List<Movies>> topRated = ValueNotifier([]);
+ValueNotifier<List<Movies>> top10TvShows = ValueNotifier([]);
+int randomIndex = 0;
 
 class ScreenHome extends StatelessWidget {
-   ScreenHome({super.key});
+  ScreenHome({super.key});
 
-
-
-
-
-   fetchDatas() async {
+  fetchDatas() async {
     trendingNow.value = await Api().getTrendingMovies();
-    topRated.value=await Api().getTopRatedMovies();
-    top10TvShows.value=await Api().getTop10TvShows();
-
-  
+    topRated.value = await Api().getTopRatedMovies();
+    top10TvShows.value = await Api().getTop10TvShows();
     final random = Random();
     randomIndex = random.nextInt(10);
   }
@@ -45,7 +39,7 @@ class ScreenHome extends StatelessWidget {
               child: NotificationListener<UserScrollNotification>(
                 onNotification: (notification) {
                   final ScrollDirection direction = notification.direction;
-        
+
                   if (direction == ScrollDirection.reverse) {
                     scrollNotifier.value = false;
                   } else if (direction == ScrollDirection.forward) {
@@ -56,24 +50,42 @@ class ScreenHome extends StatelessWidget {
                 child: Stack(
                   children: [
                     ListView(
-                      children:  [
-                        BackgroundCard(),
-                        MainTitleCard(title: "Top Rated",
-                        listNotifier: topRated),
+                      children: [
+                        FutureBuilder(
+                          future: Api().getTrendingMovies(),
+                          builder: (context, snapshot) => snapshot.hasData
+                              ? BackgroundCard(
+                                  imageUrl:
+                                      snapshot.data![randomIndex].posterPath)
+                              : const SizedBox(
+                                  height: 700,
+                                  width: double.infinity,
+                                  child: Center(
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                ),
+                        ),
+                        MainTitleCard(
+                            title: "Top Rated", listNotifier: topRated),
                         kHeight,
-                        MainTitleCard(title: "Trending Now",
-                        listNotifier: trendingNow),
+                        MainTitleCard(
+                            title: "Trending Now", listNotifier: trendingNow),
                         kHeight,
-                        NumberTitleCard(listNotifier: top10TvShows,),
-                        MainTitleCard(title: "Tense Dramas",listNotifier: topRated),
+                        NumberTitleCard(
+                          listNotifier: top10TvShows,
+                        ),
+                        MainTitleCard(
+                            title: "Tense Dramas", listNotifier: topRated),
                         kHeight,
-                        MainTitleCard(title: " South Indian Cinema",listNotifier: trendingNow),
+                        MainTitleCard(
+                            title: " South Indian Cinema",
+                            listNotifier: trendingNow),
                         kHeight
                       ],
                     ),
                     scrollNotifier.value == true
                         ? AnimatedContainer(
-                          duration: const Duration(milliseconds: 1000),
+                            duration: const Duration(milliseconds: 1000),
                             width: double.infinity,
                             height: 80,
                             color: Colors.black.withOpacity(0.1),
@@ -83,9 +95,9 @@ class ScreenHome extends StatelessWidget {
                                   children: [
                                     const CircleAvatar(
                                       radius: 25,
-                                      backgroundImage: NetworkImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJEqgLFHEKS88Zp7YCu8EzyD65Rw2huxmWrw&usqp=CAU",
+                                      backgroundImage: NetworkImage(
+                                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJEqgLFHEKS88Zp7YCu8EzyD65Rw2huxmWrw&usqp=CAU",
                                       ),
-                                      
                                     ),
                                     const Spacer(),
                                     const Icon(
@@ -98,21 +110,32 @@ class ScreenHome extends StatelessWidget {
                                     Container(
                                       width: 30,
                                       height: 30,
-                                      color: Colors.blue,
+                                      decoration: const BoxDecoration(
+                                          image: DecorationImage(
+                                              image: NetworkImage(
+                                                  kAvatarIcon))),
                                     ),
                                     kWidth
                                   ],
                                 ),
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
                                   children: [
-                                  Text("TV Shows",
-                                  style: kHomeTitleText,),
-                                  Text("Movies",
-                                  style: kHomeTitleText,),
-                                  Text("Categories",
-                                  style: kHomeTitleText,),
-                                ],)
+                                    Text(
+                                      "TV Shows",
+                                      style: kHomeTitleText,
+                                    ),
+                                    Text(
+                                      "Movies",
+                                      style: kHomeTitleText,
+                                    ),
+                                    Text(
+                                      "Categories",
+                                      style: kHomeTitleText,
+                                    ),
+                                  ],
+                                )
                               ],
                             ),
                           )

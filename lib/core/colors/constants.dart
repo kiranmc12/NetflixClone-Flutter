@@ -25,6 +25,7 @@ const kNewAandHotImage1="https://www.themoviedb.org/t/p/w250_and_h141_face/mDfJG
 
 
 const kNewAandHotImage2="https://www.themoviedb.org/t/p/w533_and_h300_bestv2/kBBMF7GWYXzdRSk5w4xwip7yk3U.jpg";
+const kAvatarIcon="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png";
 
 TextStyle kHomeTitleText=const TextStyle(
   fontSize:14,

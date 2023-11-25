@@ -6,6 +6,7 @@ import 'package:netflixclone/presentation/widgets/video_widget.dart';
 
 class CommingSoonWidget extends StatelessWidget {
   final Movies movie;
+
   const CommingSoonWidget({
     super.key,
     required this.movie,
@@ -56,7 +57,7 @@ class CommingSoonWidget extends StatelessWidget {
                     width: 200,
                     child: Text(
                       movie.title,
-                      style: TextStyle(
+                      style: const TextStyle(
                           overflow: TextOverflow.ellipsis,
                           letterSpacing: -3,
                           fontSize: 25,
